@@ -27,20 +27,27 @@
         <item>rontok</item>
         <item>botak</item>
         <item>berparasit</item>
-    </string-array><string-array name="list_mata">
+    </string-array>
+    <string-array name="list_mata">
         <item>jernih</item>
         <item>keluar air dan berwarna merah</item>
         <item>belekan dan keruh</item>
-    </string-array><string-array name="list_mulut">
+    </string-array>
+    <string-array name="list_mulut">
         <item>bersih</item>
         <item>berliur</item>
         <item>berbintil-bintil merah</item>
-    </string-array><string-array name="list_celah_kuku">
+    </string-array>
+    <string-array name="list_celah_kuku">
         <item>bersih</item>
         <item>terjadi penebalan</item>
         <item>radang dan bengkak</item>
-    </string-array><string-array name="list_dubur">
+    </string-array>
+    <string-array name="list_dubur">
         <item>bersih dan kering</item>
         <item>kotor dan basah</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

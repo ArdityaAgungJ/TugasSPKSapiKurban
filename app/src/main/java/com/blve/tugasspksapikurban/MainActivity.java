@@ -5,8 +5,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,20 +28,22 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     EditText ETKode;
     Spinner SpnAktivitas, SpnBulu, SpnMata, SpnMulut, SpnCelahKuku, SpnDubur;
     ArrayAdapter<CharSequence> adapterSpn;
     Button btnProses;
+    Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         inisialisasi();
 
@@ -59,42 +65,55 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        toolbar.setTitle("SPK Pemilihan Sapi Kurban");
+        loadFragment(new FragmentSPK());
+
+    }
+
+    private void loadFragment(FragmentSPK fragmentSPK) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragmentSPK);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void inisialisasi() {
-        ETKode = findViewById(R.id.editText);
-        SpnAktivitas = findViewById(R.id.spinner_act);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_aktivitas, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnAktivitas.setAdapter(adapterSpn);
-        SpnBulu = findViewById(R.id.spinner_bulu);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_bulu, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnBulu.setAdapter(adapterSpn);
-        SpnCelahKuku = findViewById(R.id.spinner_celah_kuku);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_celah_kuku, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnCelahKuku.setAdapter(adapterSpn);
-        SpnDubur = findViewById(R.id.spinner_dubur);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_dubur, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnDubur.setAdapter(adapterSpn);
-        SpnMata = findViewById(R.id.spinner_mata);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_mata, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnMata.setAdapter(adapterSpn);
-        SpnMulut = findViewById(R.id.spinner_mulut);
-        adapterSpn = ArrayAdapter.createFromResource(this,
-                R.array.list_mulut, android.R.layout.simple_spinner_item);
-        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpnMulut.setAdapter(adapterSpn);
-        btnProses = findViewById(R.id.btnProses);
-        btnProses.setOnClickListener(this);
+//        ETKode = findViewById(R.id.editText);
+//        SpnAktivitas = findViewById(R.id.spinner_act);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_aktivitas, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnAktivitas.setAdapter(adapterSpn);
+//        SpnBulu = findViewById(R.id.spinner_bulu);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_bulu, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnBulu.setAdapter(adapterSpn);
+//        SpnCelahKuku = findViewById(R.id.spinner_celah_kuku);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_celah_kuku, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnCelahKuku.setAdapter(adapterSpn);
+//        SpnDubur = findViewById(R.id.spinner_dubur);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_dubur, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnDubur.setAdapter(adapterSpn);
+//        SpnMata = findViewById(R.id.spinner_mata);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_mata, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnMata.setAdapter(adapterSpn);
+//        SpnMulut = findViewById(R.id.spinner_mulut);
+//        adapterSpn = ArrayAdapter.createFromResource(this,
+//                R.array.list_mulut, android.R.layout.simple_spinner_item);
+//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpnMulut.setAdapter(adapterSpn);
+//        btnProses = findViewById(R.id.btnProses);
+//        btnProses.setOnClickListener(this);
 
     }
 
@@ -127,15 +146,27 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment fragment;
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.btm_nav_add) {
+            toolbar.setTitle("SPK Pemilihan Sapi Kurban");
+            fragment = new FragmentSPK();
+            loadFragment((FragmentSPK) fragment);
+            return true;
+        } else if (id == R.id.btm_nav_history) {
+            Toast.makeText(this, "aa", Toast.LENGTH_SHORT).show();
+        }
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
