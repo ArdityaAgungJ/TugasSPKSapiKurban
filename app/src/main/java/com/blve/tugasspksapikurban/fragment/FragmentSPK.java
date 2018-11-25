@@ -1,4 +1,4 @@
-package com.blve.tugasspksapikurban;
+package com.blve.tugasspksapikurban.fragment;
 
 
 import android.app.AlertDialog;
@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.blve.tugasspksapikurban.R;
 
 
 /**
@@ -150,7 +152,6 @@ public class FragmentSPK extends Fragment implements View.OnClickListener {
                             }
                         });
                 builder.create().show();
-
 
         }
     }

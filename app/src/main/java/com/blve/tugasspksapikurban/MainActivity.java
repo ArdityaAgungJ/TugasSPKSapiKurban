@@ -1,17 +1,10 @@
 package com.blve.tugasspksapikurban;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,20 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+import com.blve.tugasspksapikurban.fragment.FragmentSPK;
 
-    EditText ETKode;
-    Spinner SpnAktivitas, SpnBulu, SpnMata, SpnMulut, SpnCelahKuku, SpnDubur;
-    ArrayAdapter<CharSequence> adapterSpn;
-    Button btnProses;
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
+
     Toolbar toolbar;
 
 
@@ -43,18 +29,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        inisialisasi();
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-////        fab.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-////            }
-////        });
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,42 +54,6 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    private void inisialisasi() {
-//        ETKode = findViewById(R.id.editText);
-//        SpnAktivitas = findViewById(R.id.spinner_act);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_aktivitas, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnAktivitas.setAdapter(adapterSpn);
-//        SpnBulu = findViewById(R.id.spinner_bulu);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_bulu, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnBulu.setAdapter(adapterSpn);
-//        SpnCelahKuku = findViewById(R.id.spinner_celah_kuku);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_celah_kuku, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnCelahKuku.setAdapter(adapterSpn);
-//        SpnDubur = findViewById(R.id.spinner_dubur);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_dubur, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnDubur.setAdapter(adapterSpn);
-//        SpnMata = findViewById(R.id.spinner_mata);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_mata, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnMata.setAdapter(adapterSpn);
-//        SpnMulut = findViewById(R.id.spinner_mulut);
-//        adapterSpn = ArrayAdapter.createFromResource(this,
-//                R.array.list_mulut, android.R.layout.simple_spinner_item);
-//        adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        SpnMulut.setAdapter(adapterSpn);
-//        btnProses = findViewById(R.id.btnProses);
-//        btnProses.setOnClickListener(this);
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -184,81 +122,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnProses:
-                int nilaiAktivitas = SpnAktivitas.getSelectedItemPosition();
-                int nilaiBulu= SpnBulu.getSelectedItemPosition();
-                int nilaiMata = SpnMata.getSelectedItemPosition();
-                int nilaiMulut = SpnMulut.getSelectedItemPosition();
-                int nilaiCelahKuku = SpnCelahKuku.getSelectedItemPosition();
-                int nilaiDubur= SpnDubur.getSelectedItemPosition();
-                if (nilaiAktivitas == 0) {
-                    nilaiAktivitas = 90;
-                } else if (nilaiAktivitas == 1) {
-                    nilaiAktivitas = 60;
-                } else if (nilaiAktivitas == 2) {
-                    nilaiAktivitas = 40;
-                }
-                if (nilaiBulu == 0) {
-                    nilaiBulu = 90;
-                } else if (nilaiBulu == 1) {
-                    nilaiBulu = 60;
-                } else if (nilaiBulu == 2) {
-                    nilaiBulu = 40;
-                } else if (nilaiBulu == 3) {
-                    nilaiBulu = 20;
-                }
-                if (nilaiMata == 0) {
-                    nilaiMata = 90;
-                } else if (nilaiMata == 1) {
-                    nilaiMata = 60;
-                } else if (nilaiMata == 2) {
-                    nilaiMata = 20;
-                }
-                if (nilaiMulut == 0) {
-                    nilaiMulut = 90;
-                } else if (nilaiMulut == 1) {
-                    nilaiMulut = 40;
-                } else if (nilaiMulut == 2) {
-                    nilaiMulut = 20;
-                }
-                if (nilaiCelahKuku == 0) {
-                    nilaiCelahKuku = 90;
-                } else if (nilaiCelahKuku == 1) {
-                    nilaiCelahKuku = 60;
-                } else if (nilaiCelahKuku == 2) {
-                    nilaiCelahKuku = 20;
-                }
-                if (nilaiDubur == 0) {
-                    nilaiDubur = 90;
-                } else if (nilaiDubur == 1) {
-                    nilaiDubur = 20;
-                }
-                int nilai_rata_rata = (nilaiAktivitas + nilaiBulu + nilaiCelahKuku + nilaiDubur + nilaiMata + nilaiMulut) / 6;
-                String keputusan;
-                if (nilai_rata_rata > 80) {
-                    keputusan = "Sapi sangat ideal";
-                } else if (nilai_rata_rata > 50) {
-                    keputusan = "Sapi boleh untuk kurban namun lebih baik dilakukan pemeriksaan lebih lanjut";
-                } else{
-                    keputusan = "Sapi tidak direkomendasikan sebagai hewan kurban";
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_title)
-                        .setMessage(keputusan)
-                        .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                builder.create().show();
-
-
-        }
     }
 }
