@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Tugas SPK Sapi Kurban</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="label_code">Identitas Sapi</string>
+    <string name="label_activity">Aktivitas Sapi</string>
+    <string name="label_bulu">Bulu/Rambut Sapi</string>
+    <string name="label_mata">Mata Sapi</string>
+    <string name="label_mulut">Mulut Sapi</string>
+    <string name="label_celah_kuku">Celah Kuku Sapi</string>
+    <string name="label_dubur">Dubur Sapi</string>
+    <string name="dialog_title">Rekomendasi Keputusan</string>
+    <string name="ok">OK</string>
+    <string name="btn_proses">Proses</string>
+
+    <string-array name="list_aktivitas">
+        <item>lincah dan semangat</item>
+        <item>gelisah</item>
+        <item>pincang</item>
+    </string-array>
+    <string-array name="list_bulu">
+        <item>halus dan mengkilap</item>
+        <item>rontok</item>
+        <item>botak</item>
+        <item>berparasit</item>
+    </string-array><string-array name="list_mata">
+        <item>jernih</item>
+        <item>keluar air dan berwarna merah</item>
+        <item>belekan dan keruh</item>
+    </string-array><string-array name="list_mulut">
+        <item>bersih</item>
+        <item>berliur</item>
+        <item>berbintil-bintil merah</item>
+    </string-array><string-array name="list_celah_kuku">
+        <item>bersih</item>
+        <item>terjadi penebalan</item>
+        <item>radang dan bengkak</item>
+    </string-array><string-array name="list_dubur">
+        <item>bersih dan kering</item>
+        <item>kotor dan basah</item>
+    </string-array>
+</resources>
