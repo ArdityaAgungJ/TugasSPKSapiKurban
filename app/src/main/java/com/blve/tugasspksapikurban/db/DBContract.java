@@ -1,4 +1,4 @@
-package com.blve.tugasspksapikurban.provider;
+package com.blve.tugasspksapikurban.db;
 
 import android.database.Cursor;
 import android.net.Uri;

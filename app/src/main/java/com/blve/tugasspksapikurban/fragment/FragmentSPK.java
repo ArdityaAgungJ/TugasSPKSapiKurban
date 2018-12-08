@@ -2,6 +2,8 @@ package com.blve.tugasspksapikurban.fragment;
 
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,7 +17,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.blve.tugasspksapikurban.MainActivity;
 import com.blve.tugasspksapikurban.R;
+
+import static com.blve.tugasspksapikurban.db.DBContract.CONTENT_URI;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.AKTIVITAS;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.BULU;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.CELAH_KUKU;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.DUBUR;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.IDENTITAS;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.MATA;
+import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.MULUT;
 
 
 /**
@@ -32,6 +44,7 @@ public class FragmentSPK extends Fragment implements View.OnClickListener {
     public FragmentSPK() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -85,12 +98,21 @@ public class FragmentSPK extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnProses:
+                String nilaiIdentitas = ETKode.getText().toString().trim();
                 int nilaiAktivitas = SpnAktivitas.getSelectedItemPosition();
                 int nilaiBulu= SpnBulu.getSelectedItemPosition();
                 int nilaiMata = SpnMata.getSelectedItemPosition();
                 int nilaiMulut = SpnMulut.getSelectedItemPosition();
                 int nilaiCelahKuku = SpnCelahKuku.getSelectedItemPosition();
                 int nilaiDubur= SpnDubur.getSelectedItemPosition();
+                final ContentValues values = new ContentValues();
+                values.put(IDENTITAS, nilaiIdentitas);
+                values.put(AKTIVITAS, nilaiIdentitas);
+                values.put(BULU, nilaiBulu);
+                values.put(MATA, nilaiMata);
+                values.put(MULUT, nilaiMulut);
+                values.put(CELAH_KUKU, nilaiCelahKuku);
+                values.put(DUBUR, nilaiDubur);
                 if (nilaiAktivitas == 0) {
                     nilaiAktivitas = 90;
                 } else if (nilaiAktivitas == 1) {
@@ -145,13 +167,22 @@ public class FragmentSPK extends Fragment implements View.OnClickListener {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle(R.string.dialog_title)
                         .setMessage(keputusan)
-                        .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.simpan, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Context activityContext = MainActivity.getContextOfMainActivity();
+                                activityContext.getContentResolver().insert(CONTENT_URI, values);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                             }
                         });
                 builder.create().show();
+
+
 
         }
     }

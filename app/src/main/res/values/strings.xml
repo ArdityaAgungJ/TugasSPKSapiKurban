@@ -50,4 +50,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="simpan">simpan</string>
+    <string name="cancel">tutup</string>
+    <string name="identitas">identitas</string>
+    <string name="btm_nav_1">SPK</string>
+    <string name="btm_nav_2">History</string>
 </resources>

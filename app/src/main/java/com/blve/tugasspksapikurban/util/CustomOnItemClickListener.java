@@ -1,4 +1,4 @@
-package blvesoft.com.a026mynotesapp;
+package com.blve.tugasspksapikurban.util;
 
 import android.view.View;
 
