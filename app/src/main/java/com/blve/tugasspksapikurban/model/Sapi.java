@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 import static android.provider.BaseColumns._ID;
 import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.AKTIVITAS;
 import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.BULU;
@@ -15,7 +17,7 @@ import static com.blve.tugasspksapikurban.db.DBContract.TableColumns.MULUT;
 import static com.blve.tugasspksapikurban.db.DBContract.getColumnInt;
 import static com.blve.tugasspksapikurban.db.DBContract.getColumnString;
 
-public class PotensiSapi implements Parcelable {
+public class Sapi implements Parcelable {
     private int id;
     private String identitas;
     private int aktivitas;
@@ -24,7 +26,15 @@ public class PotensiSapi implements Parcelable {
     private int mulut;
     private int celah_kuku;
     private int dubur;
+    private boolean isChecked = false;
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 
     public int getId() {
         return id;
@@ -107,11 +117,22 @@ public class PotensiSapi implements Parcelable {
         dest.writeInt(this.dubur);
     }
 
-    public PotensiSapi() {
+    public Sapi() {
 
     }
 
-    public PotensiSapi(Cursor cursor) {
+
+    public Sapi(String identitas, int aktivitas, int bulu, int mata, int mulut, int celah_kuku, int dubur) {
+        this.identitas = identitas;
+        this.aktivitas = aktivitas;
+        this.bulu = bulu;
+        this.mata = mata;
+        this.mulut = mulut;
+        this.celah_kuku = celah_kuku;
+        this.dubur = dubur;
+    }
+
+    public Sapi(Cursor cursor) {
         this.id = getColumnInt(cursor, _ID);
         this.identitas = getColumnString(cursor, IDENTITAS);
         this.aktivitas = getColumnInt(cursor, AKTIVITAS);
@@ -122,7 +143,9 @@ public class PotensiSapi implements Parcelable {
         this.dubur = getColumnInt(cursor, DUBUR);
     }
 
-    protected PotensiSapi(Parcel in) {
+
+
+    protected Sapi(Parcel in) {
         this.id = in.readInt();
         this.identitas = in.readString();
         this.aktivitas = in.readInt();
@@ -133,15 +156,15 @@ public class PotensiSapi implements Parcelable {
         this.dubur = in.readInt();
     }
 
-    public static final Parcelable.Creator<PotensiSapi> CREATOR = new Parcelable.Creator<PotensiSapi>() {
+    public static final Parcelable.Creator<Sapi> CREATOR = new Parcelable.Creator<Sapi>() {
         @Override
-        public PotensiSapi createFromParcel(Parcel source) {
-            return new PotensiSapi(source);
+        public Sapi createFromParcel(Parcel source) {
+            return new Sapi(source);
         }
 
         @Override
-        public PotensiSapi[] newArray(int size) {
-            return new PotensiSapi[size];
+        public Sapi[] newArray(int size) {
+            return new Sapi[size];
         }
     };
 

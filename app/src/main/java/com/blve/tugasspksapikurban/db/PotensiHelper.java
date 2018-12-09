@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.blve.tugasspksapikurban.model.PotensiSapi;
+import com.blve.tugasspksapikurban.model.Sapi;
 
 import java.util.ArrayList;
 
@@ -41,8 +41,8 @@ public class PotensiHelper {
         dataBaseHelper.close();
     }
 
-    public ArrayList<PotensiSapi> query(){
-        ArrayList<PotensiSapi> arrayList = new ArrayList<PotensiSapi>();
+    public ArrayList<Sapi> query(){
+        ArrayList<Sapi> arrayList = new ArrayList<Sapi>();
         Cursor cursor = database.query(DATABASE_TABLE
                 ,null
                 ,null
@@ -51,21 +51,21 @@ public class PotensiHelper {
                 ,null,_ID +" DESC"
                 ,null);
         cursor.moveToFirst();
-        PotensiSapi potensiSapi;
+        Sapi sapi;
         if (cursor.getCount()>0) {
             do {
 
-                potensiSapi = new PotensiSapi();
-                potensiSapi.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
-                potensiSapi.setIdentitas(cursor.getString(cursor.getColumnIndexOrThrow(IDENTITAS)));
-                potensiSapi.setAktivitas(cursor.getInt(cursor.getColumnIndexOrThrow(AKTIVITAS)));
-                potensiSapi.setBulu(cursor.getInt(cursor.getColumnIndexOrThrow(BULU)));
-                potensiSapi.setMata(cursor.getInt(cursor.getColumnIndexOrThrow(MATA)));
-                potensiSapi.setMulut(cursor.getInt(cursor.getColumnIndexOrThrow(MULUT)));
-                potensiSapi.setCelah_kuku(cursor.getInt(cursor.getColumnIndexOrThrow(CELAH_KUKU)));
-                potensiSapi.setDubur(cursor.getInt(cursor.getColumnIndexOrThrow(DUBUR)));
+                sapi = new Sapi();
+                sapi.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                sapi.setIdentitas(cursor.getString(cursor.getColumnIndexOrThrow(IDENTITAS)));
+                sapi.setAktivitas(cursor.getInt(cursor.getColumnIndexOrThrow(AKTIVITAS)));
+                sapi.setBulu(cursor.getInt(cursor.getColumnIndexOrThrow(BULU)));
+                sapi.setMata(cursor.getInt(cursor.getColumnIndexOrThrow(MATA)));
+                sapi.setMulut(cursor.getInt(cursor.getColumnIndexOrThrow(MULUT)));
+                sapi.setCelah_kuku(cursor.getInt(cursor.getColumnIndexOrThrow(CELAH_KUKU)));
+                sapi.setDubur(cursor.getInt(cursor.getColumnIndexOrThrow(DUBUR)));
 
-                arrayList.add(potensiSapi);
+                arrayList.add(sapi);
                 cursor.moveToNext();
 
             } while (!cursor.isAfterLast());
@@ -74,28 +74,28 @@ public class PotensiHelper {
         return arrayList;
     }
 
-    public long insert(PotensiSapi potensiSapi){
+    public long insert(Sapi sapi){
         ContentValues initialValues =  new ContentValues();
-        initialValues.put(IDENTITAS, potensiSapi.getIdentitas());
-        initialValues.put(AKTIVITAS, potensiSapi.getAktivitas());
-        initialValues.put(BULU, potensiSapi.getBulu());
-        initialValues.put(MATA, potensiSapi.getMata());
-        initialValues.put(MULUT, potensiSapi.getMulut());
-        initialValues.put(CELAH_KUKU, potensiSapi.getCelah_kuku());
-        initialValues.put(DUBUR, potensiSapi.getDubur());
+        initialValues.put(IDENTITAS, sapi.getIdentitas());
+        initialValues.put(AKTIVITAS, sapi.getAktivitas());
+        initialValues.put(BULU, sapi.getBulu());
+        initialValues.put(MATA, sapi.getMata());
+        initialValues.put(MULUT, sapi.getMulut());
+        initialValues.put(CELAH_KUKU, sapi.getCelah_kuku());
+        initialValues.put(DUBUR, sapi.getDubur());
         return database.insert(DATABASE_TABLE, null, initialValues);
     }
 
-    public int update(PotensiSapi potensiSapi){
+    public int update(Sapi sapi){
         ContentValues args = new ContentValues();
-        args.put(IDENTITAS, potensiSapi.getIdentitas());
-        args.put(AKTIVITAS, potensiSapi.getAktivitas());
-        args.put(BULU, potensiSapi.getBulu());
-        args.put(MATA, potensiSapi.getMata());
-        args.put(MULUT, potensiSapi.getMulut());
-        args.put(CELAH_KUKU, potensiSapi.getCelah_kuku());
-        args.put(DUBUR, potensiSapi.getDubur());
-        return database.update(DATABASE_TABLE, args, _ID + "= '" + potensiSapi.getId() + "'", null);
+        args.put(IDENTITAS, sapi.getIdentitas());
+        args.put(AKTIVITAS, sapi.getAktivitas());
+        args.put(BULU, sapi.getBulu());
+        args.put(MATA, sapi.getMata());
+        args.put(MULUT, sapi.getMulut());
+        args.put(CELAH_KUKU, sapi.getCelah_kuku());
+        args.put(DUBUR, sapi.getDubur());
+        return database.update(DATABASE_TABLE, args, _ID + "= '" + sapi.getId() + "'", null);
     }
 
     public int delete(int id){

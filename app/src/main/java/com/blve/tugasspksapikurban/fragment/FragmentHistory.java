@@ -10,20 +10,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.blve.tugasspksapikurban.MainActivity;
 import com.blve.tugasspksapikurban.R;
 import com.blve.tugasspksapikurban.adapter.PotensiAdapter;
-import com.blve.tugasspksapikurban.model.PotensiSapi;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.blve.tugasspksapikurban.db.DBContract.CONTENT_URI;
 
